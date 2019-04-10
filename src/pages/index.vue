@@ -1,110 +1,103 @@
 <template>
-  <div class="container" @click="clickHandle('test click', $event)">
-
-    <div class="userinfo" @click="bindViewTap">
-      <img class="userinfo-avatar" v-if="userInfo.avatarUrl" :src="userInfo.avatarUrl" background-size="cover" />
-      <div class="userinfo-nickname">
-        <card :text="userInfo.nickName"></card>
-      </div>
+  <div>
+    <!-- 加载状态 -->
+    <div v-if="loading">
+      <i-spin
+        fix
+        size="large"
+      ></i-spin>
     </div>
-
-    <van-tag>标签</van-tag>
-    <van-tag type="danger">标签</van-tag>
-    <van-tag type="primary">标签</van-tag>
-    <van-tag type="success">标签</van-tag>
-
-    <div class="usermotto">
-      <div class="user-motto">
-        <card :text="motto"></card>
-      </div>
-    </div>
-
-    <form class="form-container">
-      <input type="text" class="form-control" v-model="motto" placeholder="v-model" />
-      <input type="text" class="form-control" v-model.lazy="motto" placeholder="v-model.lazy" />
-    </form>
-    <a href="/pages/counter" class="counter">去往Vuex示例页面</a>
+    <van-search
+      :value="value"
+      placeholder="搜索文章内容"
+    />
+    <TopSwiper :imgUrls="imgUrls" />
+    <IndexButton />
+    <recommend-list :recommend_list="recommend_list" />
+    <recommend-list :prepare="prepare" />
+    <div class="article">精选文章</div>
+    <corpusList :corpus_list="corpus_list" />
+    <div
+      class="article"
+      @click="goFind"
+    >点击查看更多</div>
   </div>
 </template>
 
 <script>
-import card from '@/components/card'
-
+import { get } from "@/util";
+import TopSwiper from "@/components/TopSwiper";
+import IndexButton from "@/components/IndexButton";
+import RecommendList from "@/components/RecommendList";
+import corpusList from "@/components/corpusList";
 export default {
-  mpType: 'page',
-
-  data () {
-    return {
-      motto: 'Hello World',
-      userInfo: {}
-    }
-  },
-
   components: {
-    card
+    TopSwiper,
+    IndexButton,
+    RecommendList,
+    corpusList
   },
-
+  data() {
+    return {
+      imgUrls: [],
+      recommend_list: [],
+      corpus_list: [],
+      loading: true
+    };
+  },
   methods: {
-    bindViewTap () {
-      const url = '/packageA/logs'
-      this.$router.push(url)
+    //   首页轮播
+    async swiperList() {
+      const imgUrls = await get("carousel_recommend_list", {
+        type: 1
+      });
+      this.imgUrls = imgUrls;
+      console.log(this.imgUrls);
     },
-    getUserInfo () {
-      // 调用登录接口
-      wx.login({
-        success: () => {
-          wx.getUserInfo({
-            success: (res) => {
-              this.userInfo = res.userInfo
-            }
-          })
+    // 首页推荐
+    async recommendList() {
+      const recommend_list = await get("home_recommend_list");
+      this.recommend_list = recommend_list.list;
+      var len = this.recommend_list.length;
+      console.log(this.recommend_list);
+      while (len--) {
+        if (this.recommend_list[len].type == 13) {
+          const prepare = this.recommend_list[len];
+          this.prepare = prepare;
+          var obj1_str = this.prepare.json_content.replace(/&quot;/g, '"');
+          var obj1 = JSON.parse(obj1_str);
+          this.prepare = obj1;
         }
-      })
+      }
+      console.log(this.prepare);
     },
-    clickHandle (msg, ev) {
-      // eslint-disable-next-line
-      console.log('clickHandle:', msg, ev)
+    // 精选文章
+    async corpusList() {
+      const corpus_list = await get("article_list");
+      this.corpus_list = corpus_list.list;
+      this.loading = false;
+      console.log(this.corpus_list);
+    },
+    // 跳转发现页面
+    goFind() {
+      wx.switchTab({
+        url: "../find/main"
+      });
     }
   },
-
-  created () {
-    // 调用应用实例的方法获取全局数据
-    this.getUserInfo()
+  mounted() {
+    this.swiperList();
+    this.recommendList();
+    this.corpusList();
   }
-}
+};
 </script>
 
-<style scoped>
-.userinfo {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-}
-
-.userinfo-avatar {
-  width: 128rpx;
-  height: 128rpx;
-  margin: 20rpx;
-  border-radius: 50%;
-}
-
-.userinfo-nickname {
-  color: #aaa;
-}
-
-
-.form-control {
-  display: block;
-  padding: 0 12px;
-  margin-bottom: 5px;
-  border: 1px solid #ccc;
-}
-
-.counter {
-  display: inline-block;
-  margin: 10px auto;
-  padding: 5px 10px;
-  color: blue;
-  border: 1px solid blue;
+<style lang="scss" scoped>
+.article {
+  padding: 30rpx;
+  text-align: center;
+  background: #fff;
+  font-size: 34rpx;
 }
 </style>

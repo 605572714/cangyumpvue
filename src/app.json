@@ -1,16 +1,86 @@
 {
   "pages": [
     "pages/index",
-    "pages/counter",
+    "pages/auction",
+    "pages/find",
+    "pages/personal",
     {
-      "path": "packageA/logs",
-      "subPackage": true
+      "path": "pages/prepare/list"
+    },
+    {
+      "path": "pages/prepare/detail"
+    },
+    {
+      "path": "pages/prepare/support"
+    },
+    {
+      "path": "pages/fakegoods/list"
+    },
+    {
+      "path": "pages/fakegoods/detail"
+    },
+    {
+      "path": "pages/spike/list"
+    },
+    {
+      "path": "pages/spike/product"
+    },
+    {
+      "path": "pages/spike/detail"
+    },
+    {
+      "path": "pages/identify/list"
+    },
+    {
+      "path": "pages/identify/detail"
     }
   ],
   "window": {
     "backgroundTextStyle": "light",
     "navigationBarBackgroundColor": "#fff",
-    "navigationBarTitleText": "WeChat",
+    "navigationBarTitleText": "藏玉",
     "navigationBarTextStyle": "black"
+  },
+  "usingComponents": {
+    "i-spin": "/static/iview/spin/index",
+    "van-tabs": "/static/vant/tabs/index",
+    "van-tab": "/static/vant/tab/index",
+    "van-progress": "/static/vant/progress/index",
+    "i-count-down": "/static/iview/count-down/index",
+    "van-search": "/static/vant/search/index",
+    "van-popup": "/static/vant/popup/index",
+    "van-button": "/static//vant/button/index"
+  },
+  "tabBar": {
+    "color": "#888",
+    "selectedColor": "#bc2e2e",
+    "backgroundColor": "#fff",
+    "borderStyle": "black",
+    "list": [
+      {
+        "pagePath": "pages/index",
+        "text": "首页",
+        "iconPath": "static/images/home.png",
+        "selectedIconPath": "static/images/home_on.png"
+      },
+      {
+        "pagePath": "pages/auction",
+        "text": "竞拍",
+        "iconPath": "static/images/paimai.png",
+        "selectedIconPath": "static/images/paimai_on.png"
+      },
+      {
+        "pagePath": "pages/find",
+        "text": "发现",
+        "iconPath": "static/images/faxian.png",
+        "selectedIconPath": "static/images/faxian_on.png"
+      },
+      {
+        "pagePath": "pages/personal",
+        "text": "个人",
+        "iconPath": "static/images/geren.png",
+        "selectedIconPath": "static/images/geren_on.png"
+      }
+    ]
   }
 }

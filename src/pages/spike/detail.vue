@@ -95,8 +95,8 @@ export default {
       host_img: config.host_img
     };
   },
-  mounted() {
-    this.id = this.$mp.query.id;
+  onLoad(options) {
+    this.id = options.id;
     this.request();
   },
   methods: {

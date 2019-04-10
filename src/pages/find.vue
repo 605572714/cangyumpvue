@@ -42,7 +42,7 @@ export default {
       console.log(this.special_list);
     }
   },
-  mounted() {
+  onLoad() {
     this.requestList();
   }
 };

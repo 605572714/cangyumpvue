@@ -142,8 +142,8 @@ export default {
       });
     }
   },
-  mounted() {
-    this.id = this.$mp.query.id;
+  onLoad(options) {
+    this.id = options.id;
     this.requestList();
   }
 };

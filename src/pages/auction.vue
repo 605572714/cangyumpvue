@@ -100,7 +100,7 @@ export default {
       guess_header: []
     };
   },
-  mounted() {
+  onLoad() {
     this.productList();
   },
   methods: {

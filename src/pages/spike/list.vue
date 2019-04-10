@@ -36,7 +36,7 @@ export default {
       loading: true
     };
   },
-  mounted() {
+  onLoad() {
     this.requestList();
   },
   methods: {

@@ -67,11 +67,9 @@ export default {
       host_img: config.host_img
     };
   },
-  onLoad() {
+  onLoad(options) {
     Object.assign(this.$data, this.$options.data());
-  },
-  mounted() {
-    this.id = this.$mp.query.id;
+    this.id = options.id;
     this.request();
   },
   methods: {

@@ -39,7 +39,7 @@ export default {
       page: 0
     };
   },
-  mounted() {
+  onLoad() {
     this.requestList();
   },
   methods: {

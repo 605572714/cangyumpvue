@@ -1,5 +1,6 @@
 <script>
 import config from "@/config";
+import { showModal } from "@/util";
 export default {
   created() {
     // 调用API从本地缓存中获取数据
@@ -11,6 +12,7 @@ export default {
       wx.switchTab({
         url: "pages/personal"
       });
+      showModal("", "请登录获取更多权限");
     }
   }
 };

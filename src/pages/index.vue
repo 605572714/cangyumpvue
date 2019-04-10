@@ -80,12 +80,13 @@ export default {
     },
     // 跳转发现页面
     goFind() {
-      wx.switchTab({
-        url: "../find/main"
-      });
+      // wx.switchTab({
+      //   url: "find"
+      // });
+      this.$router.push({ path: "find", isTab: true });
     }
   },
-  mounted() {
+  onLoad() {
     this.swiperList();
     this.recommendList();
     this.corpusList();

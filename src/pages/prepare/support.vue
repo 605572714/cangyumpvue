@@ -45,11 +45,10 @@ export default {
       type: ""
     };
   },
-  mounted() {
-    console.log(this.$mp.query);
-    this.img = this.$mp.query.image;
-    this.id = this.$mp.query.id;
-    this.type = this.$mp.query.type;
+  onLoad(options) {
+    this.img = options.image;
+    this.id = options.id;
+    this.type = options.type;
     this.requestList();
   },
   methods: {

@@ -63,7 +63,7 @@ export default {
       user_id: config.user_id,
     };
   },
-  mounted() {
+  onLoad() {
     if (!config.token) {
     }
   },

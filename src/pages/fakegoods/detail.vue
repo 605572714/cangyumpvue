@@ -68,9 +68,10 @@ export default {
   onLoad() {
     Object.assign(this.$data, this.$options.data());
   },
-  mounted() {
+  onLoad(options) {
     //   获取传入id
-    this.id = this.$mp.query.id;
+    console.log(options);
+    this.id = options.id;
     this.request();
   },
   methods: {

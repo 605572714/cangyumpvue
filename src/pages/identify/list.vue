@@ -15,8 +15,8 @@
       />
       <div
         class="discuss"
-        v-for="(item,id) in item.comment_list"
-        :key="item.id"
+        v-for="(item,nickname_comment) in item.comment_list"
+        :key="item.nickname_comment"
       >
         <p><span :style="item.user_type==1?'color:#bc2e2e':''">{{item.nickname_comment}}</span><span v-if="item.reply_type==1"> 回复 <span :style="item.user_type==1?'color:#bc2e2e':''">{{item.tonickname}}</span></span>：{{item.comment}}</p><br />
       </div>
@@ -41,7 +41,7 @@ export default {
       loading: true
     };
   },
-  mounted() {
+  onLoad() {
     this.requestList();
   },
   onHide() {

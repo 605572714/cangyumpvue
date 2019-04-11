@@ -68,8 +68,6 @@ export default {
     // 跳转详情
     godetail(e) {
       var id = e.currentTarget.id;
-      console.log(id);
-
       wx.navigateTo({
         url: "detail?id=" + id
       });

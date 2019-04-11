@@ -14,7 +14,16 @@ export default {
       });
       showModal("", "请登录获取更多权限");
     }
-  }
+  },
+  /**
+   * 页面下拉触顶事件的处理函数
+   */
+  onPullDownRefresh: function() {},
+
+  /**
+   * 页面上拉触底事件的处理函数
+   */
+  onReachBottom: function() {}
 };
 </script>
 

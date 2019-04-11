@@ -21,13 +21,16 @@
             :type="0"
           />
           <productList :product_list="auction_list" />
-          <div class="bottom">历史拍卖
+          <a
+            href="auction/list"
+            class="bottom"
+          >历史拍卖
             <img
               class="bottom_icon"
               src="/static/images/arrow.png"
               alt=""
             >
-          </div>
+          </a>
         </van-tab>
         <van-tab title="捡漏">
           <img
@@ -54,7 +57,8 @@
             class="head_img"
             src="/static/images/fen.png"
           >
-          <p class="head_time">距离结束还有</p>
+          <p class="head_time">距离结束还有 <i-count-down :target="guess_time"></i-count-down>
+          </p>
           <p class="head_title">{{guess_header.screenings_des}}·{{guess_header.total}}件商品</p>
           <ruleList
             :rule="guess_header.rule"
@@ -97,7 +101,8 @@ export default {
       pickup_header: [],
       guess: [],
       guess_list: [],
-      guess_header: []
+      guess_header: [],
+      guess_time: null
     };
   },
   onLoad() {
@@ -112,8 +117,11 @@ export default {
       this.auction_list = auction.list;
       this.auction_header = auction.header;
       this.auction_header.rule = "拍卖";
+      var startTime = this.auction_header.start_time;
+      // this.startTime = data.getTime()
+      var endTime = this.auction_header.end_time;
       console.log("拍卖列表");
-      console.log(this.auction_list);
+      console.log(this.auction_header);
 
       //   捡漏
       const pickup = await get("pick_up_list", {
@@ -132,9 +140,16 @@ export default {
       this.guess_list = guess.list;
       this.guess_header = guess.header;
       this.guess_header.rule = "猜价";
+      // var guess_time = this.guess_header.timeStamp;
       console.log("猜价列表");
-      console.log(this.guess_list);
+      console.log(this.guess_header);
       this.loading = false;
+    }
+  },
+  computed: {
+    guess_time() {
+      console.log("www");
+      this.guess_time = new Date().getTime() + 6430000;
     }
   }
 };

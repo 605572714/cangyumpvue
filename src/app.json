@@ -33,6 +33,15 @@
     },
     {
       "path": "pages/identify/detail"
+    },
+    {
+      "path": "pages/auction/list"
+    },
+    {
+      "path": "pages/auction/product"
+    },
+    {
+      "path": "pages/auction/detail"
     }
   ],
   "window": {

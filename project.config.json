@@ -29,12 +29,20 @@
 			"list": []
 		},
 		"miniprogram": {
-			"current": 0,
+			"current": 1,
 			"list": [
 				{
 					"id": -1,
 					"name": "拍卖历史",
 					"pathName": "pages/auction/list",
+					"query": "",
+					"scene": null
+				},
+				{
+					"id": -1,
+					"name": "鉴定详情",
+					"pathName": "pages/identify/detail",
+					"query": "id=57019",
 					"scene": null
 				}
 			]

@@ -21,6 +21,21 @@
         <div class="comment"><span v-if="item.tonickname">回复 <span style="color:#d3d3d3">{{item.tonickname}}：</span></span>{{item.comment}}</div>
       </div>
     </div>
+    <!-- 发表评论 -->
+    <div class="buttom">
+      <van-cell-group>
+        <van-field
+          :value="message"
+          label="评论"
+          type="textarea"
+          placeholder="请输入评论"
+          autosize
+          clearable="true"
+          placeholder-style="backgroundcolor:red"
+          :border="false"
+        />
+      </van-cell-group>
+    </div>
   </div>
 </template>
 
@@ -105,5 +120,10 @@ export default {
     padding-left: 30rpx;
     font-size: 30rpx;
   }
+}
+.buttom{
+  position: fixed;
+  bottom: 0px;
+  width: 100%;
 }
 </style>

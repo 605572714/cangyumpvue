@@ -10,13 +10,7 @@
     <div v-if="list">
       <img
         class="top_img"
-        v-if="!imgfinish"
-        src="/static/images/imgfinish.jpg"
-      >
-      <img
-        :class="!imgfinish?'no_img':'top_img'"
         :src="host_img+list.pic_url"
-        @load="imgFinish"
       >
       <div class="top">
         <p class="status">已结束</p>
@@ -95,7 +89,6 @@ export default {
     return {
       article: "<div>CSDN: mossbaoo</div>",
       host_img: config.host_img,
-      imgfinish: false,
       loading: true,
       time: "",
       list: ""
@@ -124,11 +117,8 @@ export default {
         id: this.id
       });
       this.item = item.list;
-      console.log(this.item);
-    },
-    imgFinish() {
-      this.imgfinish = true;
       this.loading = false;
+      console.log(this.item);
     },
     godetail() {
       wx.navigateTo({

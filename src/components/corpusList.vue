@@ -1,16 +1,19 @@
 <template>
-  <div style="background:#fff">
-    <ul
+  <div
+    style="background:#fff"
+    v-if="corpus_list"
+  >
+    <div
       class="container"
       v-for="item in corpus_list"
-      :key="item.index"
+      :key="item.id"
       @click="godetail"
       :id="item.id"
     >
-      <li class="left">
+      <div class="left">
         <p class="title">{{item.title}}</p>
         <p class="content">{{item.content}}</p>
-      </li>
+      </div>
       <img
         class="right"
         v-if="!imgfinish"
@@ -23,7 +26,7 @@
         @load="imgFinish"
         :src="host_img+item.pic_header"
       />
-    </ul>
+    </div>
   </div>
 </template>
 
@@ -34,8 +37,22 @@ export default {
   data() {
     return {
       host_img: config.host_img,
-      imgfinish: false
+      imgfinish: false,
+      corpus_list: []
+
     };
+  },
+  onLoad() {
+    console.log(this.corpus_list);
+    this.corpus_list;
+  },
+  watch: {
+    corpus_list(list) {
+      this.list = list;
+      console.log("这是列表");
+      console.log(list);
+      console.log("这是列表");
+    }
   },
   methods: {
     imgFinish() {
@@ -43,18 +60,7 @@ export default {
     },
     godetail(e) {
       var id = e.currentTarget.id;
-      wx.navigateTo({
-        url: "../reading?id=" + id,
-        success: function(res) {
-          // success
-        },
-        fail: function() {
-          // fail
-        },
-        complete: function() {
-          // complete
-        }
-      });
+      this.$router.push({ path: "/pages/article/articleDetail?id=" + id });
     }
   }
 };

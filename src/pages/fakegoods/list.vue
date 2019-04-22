@@ -68,9 +68,7 @@ export default {
     // 跳转详情页面
     godetail(e) {
       var id = e.currentTarget.id;
-      wx.navigateTo({
-        url: "detail?id=" + id
-      });
+      this.$router.push({ path: "detail?id=" + id });
     },
     // 图片加载完成
     imgFinish() {

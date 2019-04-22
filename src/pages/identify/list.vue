@@ -3,7 +3,7 @@
     <div
       class="contianer"
       v-for="item in identify_list"
-      :key="item.id"
+      :key="item"
       @click="godetail"
       :id="item.id"
     >
@@ -13,13 +13,14 @@
         class="hr"
         v-if="item.palm.length>0&&item.comment_list.length>0"
       />
-      <div
-        class="discuss"
-        v-for="(item,id) in item.comment_list"
-        :key="item.id"
-      >
-        <p><span :style="item.user_type==1?'color:#bc2e2e':''">{{item.nickname_comment}}</span><span v-if="item.reply_type==1"> 回复 <span :style="item.user_type==1?'color:#bc2e2e':''">{{item.tonickname}}</span></span>：{{item.comment}}</p><br />
-      </div>
+      <discussList :discuss_list="identify_list[index].comment_list" />
+      <!-- <div
+      class="discuss"
+      v-for="item in item.comment_list"
+      :key="item"
+    >
+      <p><span :style="item.user_type==1?'color:#bc2e2e':''">{{item.nickname_comment}}</span><span v-if="item.reply_type==1"> 回复 <span :style="item.user_type==1?'color:#bc2e2e':''">{{item.tonickname}}</span></span>：{{item.comment}}</p><br />
+    </div> -->
       <p
         class="more"
         v-if="item.comment_all>3"
@@ -32,8 +33,9 @@
 import { get } from "@/util";
 import config from "@/config";
 import identifyList from "@/components/identifyList";
+import discussList from "@/components/discussList";
 export default {
-  components: { identifyList },
+  components: { identifyList, discussList },
   data() {
     return {
       identify_list: [],
@@ -42,11 +44,10 @@ export default {
     };
   },
   onLoad() {
+    Object.assign(this.$data, this.$options.data());
     this.requestList();
   },
-  onHide() {
-    // this.identify_list = [];
-  },
+  onHide() {},
   methods: {
     async requestList() {
       const identify = await get("identify_list", {
@@ -68,9 +69,7 @@ export default {
     // 跳转详情
     godetail(e) {
       var id = e.currentTarget.id;
-      wx.navigateTo({
-        url: "detail?id=" + id
-      });
+      this.$router.push({ path: "detail?id=" + id });
     }
   },
 
@@ -104,17 +103,7 @@ export default {
     border-top: 1rpx solid #d9d9d9;
     margin-bottom: 10rpx;
   }
-  .discuss {
-    font-size: 28rpx;
-    margin-top: 20rpx;
-    color: #666;
-    display: -webkit-box; /** 对象作为伸缩盒子模型显示 **/
-    -webkit-box-orient: vertical; /** 设置或检索伸缩盒对象的子元素的排列方式 **/
-    -webkit-line-clamp: 1; /** 显示的行数 **/
-    overflow: hidden; /** 隐藏超出的内容 **/
-  }
   .more {
-    // margin: 20rpx 0px;
     margin-top: 20rpx;
     font-size: 28rpx;
     color: #888;

@@ -4,6 +4,8 @@
       class="container"
       v-for="item in special_list"
       :key="item.index"
+      @tap="godetail"
+      :id="item.id"
     >
       <img
         class="image"
@@ -36,6 +38,11 @@ export default {
   methods: {
     imgFinish() {
       this.imgfinish = true;
+    },
+    godetail(e) {
+      var id = e.currentTarget.id;
+      console.log(id);
+      this.$router.push({ path: "article/seminar?id=" + id });
     }
   }
 };

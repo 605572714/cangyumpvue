@@ -73,18 +73,7 @@ export default {
     },
     goto(e) {
       var id = e.currentTarget.id;
-      wx.navigateTo({
-        url: "detail?id=" + id,
-        success: function(res) {
-          // success
-        },
-        fail: function() {
-          // fail
-        },
-        complete: function() {
-          // complete
-        }
-      });
+      this.$router.push({ path: "detail?id=" + id });
     }
   }
 };

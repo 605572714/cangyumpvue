@@ -11,10 +11,7 @@
       ></i-spin>
     </div>
     <div class="wxparse">
-      <wxParse
-        @load="finish"
-        :content="content"
-      />
+      <wxParse :content="content" />
     </div>
     <!-- 市场估价 -->
     <div
@@ -67,8 +64,6 @@ export default {
   },
   onLoad() {
     Object.assign(this.$data, this.$options.data());
-  },
-  onLoad(options) {
     //   获取传入id
     console.log(options);
     this.id = options.id;
@@ -86,9 +81,6 @@ export default {
       this.quality_list = this.list.attributes;
       this.loading = false;
       console.log(this.list);
-    },
-    finish() {
-      console.log("1234");
     }
   }
 };

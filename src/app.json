@@ -42,6 +42,12 @@
     },
     {
       "path": "pages/auction/detail"
+    },
+    {
+      "path": "pages/article/articleDetail"
+    },
+    {
+      "path": "pages/article/seminar"
     }
   ],
   "window": {

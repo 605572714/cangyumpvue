@@ -148,6 +148,7 @@ export default {
 .top_img {
   width: 750rpx;
   height: 376rpx;
+  background: #f4f4f4;
 }
 .top {
   background: #fff;

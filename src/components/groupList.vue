@@ -42,6 +42,7 @@ export default {
   width: 750rpx;
   height: 224rpx;
   vertical-align: middle;
+  background: #f4f4f4;
 }
 .container {
   width: 710rpx;
@@ -49,13 +50,14 @@ export default {
   margin-bottom: 20rpx;
   background: #fff;
   .status {
-  text-align: center;
-  font-size: 28rpx;
-  padding: 40rpx 0px;
+    text-align: center;
+    font-size: 28rpx;
+    padding: 40rpx 0px;
   }
   .image {
     width: 100%;
     height: 396rpx;
+    background: #f4f4f4;
   }
   .title {
     font-size: 32rpx;

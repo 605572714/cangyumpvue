@@ -33,7 +33,7 @@ export default {
     };
   },
   onLoad(options) {
-    Object.assign(this.$data, this.$options.data());
+    Object.assign(this.$data, this.$options.data()); 
     this.id = options.id;
     this.requestList();
   },
@@ -64,6 +64,7 @@ export default {
   .img {
     width: 100%;
     height: 420rpx;
+    background: #f4f4f4;
   }
 }
 </style>

@@ -7,7 +7,7 @@
         size="large"
       ></i-spin>
     </div>
-    <van-tabs swipeable>
+    <van-tabs swipeable> 
       <van-tab title="团购">
         <prepareList :prepare_list="prepare_list" />
       </van-tab>
@@ -19,7 +19,7 @@
 </template>
 
 <script>
-import { get } from "@/util";
+import { get } from "@/util"; 
 import prepareList from "@/components/prepareList";
 import groupList from "@/components/groupList";
 

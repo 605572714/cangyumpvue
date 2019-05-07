@@ -2,7 +2,6 @@
   <div>
     <img
       :src="host_img+head.pic_article"
-      alt=""
       class="head_img"
     >
     <div class="head">
@@ -62,6 +61,7 @@ export default {
 .head_img {
   width: 750rpx;
   height: 360rpx;
+  background: #f4f4f4;
 }
 .head {
   width: 690rpx;

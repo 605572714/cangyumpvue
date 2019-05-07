@@ -8,18 +8,12 @@
       <div
         class="content"
         v-if="item.type==4"
+        @click="godetail(item.type,item.id)"
       >
         <div class="title">本期专题</div>
         <image
           class="image"
-          v-if="!imgfinish"
-          src="/static/images/imgfinish.jpg"
-          mode='aspectFill'
-        />
-        <image
-          :class="!imgfinish?'no_image':'image'"
           :src="host_img+item.headlines"
-          @load="imgFinish"
           mode='aspectFill'
         />
       </div>
@@ -27,18 +21,12 @@
       <div
         class="content"
         v-if="item.type==23"
+        @click="godetail(item.type,item.id)"
       >
         <div class="title">臻品推荐</div>
         <image
           class="image"
-          v-if="!imgfinish"
-          src="/static/images/imgfinish.jpg"
-          mode='aspectFill'
-        />
-        <image
-          :class="!imgfinish?'no_image':'image'"
           :src="host_img+item.headlines"
-          @load="imgFinish"
           mode='aspectFill'
         />
       </div>
@@ -46,18 +34,12 @@
       <div
         class="content"
         v-if="item.type==31"
+        @click="godetail(item.type,item.id)"
       >
         <div class="title">{{item.title}}</div>
         <image
           class="image"
-          v-if="!imgfinish"
-          src="/static/images/imgfinish.jpg"
-          mode='aspectFill'
-        />
-        <image
-          :class="!imgfinish?'no_image':'image'"
           :src="host_img+item.headlines"
-          @load="imgFinish"
           mode='aspectFill'
         />
       </div>
@@ -65,18 +47,12 @@
       <div
         class="content"
         v-if="item.type==32"
+        @click="godetail(item.type,item.id)"
       >
         <div class="title">{{item.title}}</div>
         <image
           class="image"
-          v-if="!imgfinish"
-          src="/static/images/imgfinish.jpg"
-          mode='aspectFill'
-        />
-        <image
-          :class="!imgfinish?'no_image':'image'"
           :src="host_img+item.headlines"
-          @load="imgFinish"
           mode='aspectFill'
         />
       </div>
@@ -84,6 +60,7 @@
       <div
         class="content"
         v-if="item.type==11"
+        @click="godetail(item.type,item.id)"
       >
         <div class="title">{{item.title}}·{{item.amount}}件商品</div>
         <div
@@ -100,14 +77,7 @@
         >结束时间：{{item.end_time}}</div>
         <image
           class="image"
-          v-if="!imgfinish"
-          src="/static/images/imgfinish.jpg"
-          mode='aspectFill'
-        />
-        <image
-          :class="!imgfinish?'no_image':'image'"
           :src="host_img+item.headlines"
-          @load="imgFinish"
           mode='aspectFill'
         />
         <div
@@ -127,6 +97,7 @@
       <div
         class="content"
         v-if="item.type==14"
+        @click="godetail(item.type,item.id)"
       >
         <div class="title">{{item.title}}</div>
         <div
@@ -143,14 +114,7 @@
         >结束时间：{{item.end_time}}</div>
         <image
           class="image"
-          v-if="!imgfinish"
-          src="/static/images/imgfinish.jpg"
-          mode='aspectFill'
-        />
-        <image
-          :class="!imgfinish?'no_image':'image'"
           :src="host_img+item.headlines"
-          @load="imgFinish"
           mode='aspectFill'
         />
         <div
@@ -170,6 +134,7 @@
       <div
         class="content"
         v-if="item.type==17"
+        @click="godetail(item.type,item.id)"
       >
         <div class="title">{{item.title}}</div>
         <div
@@ -185,15 +150,8 @@
           v-else
         >结束时间：{{item.end_time}}</div>
         <image
-          class="image"
-          v-if="!imgfinish"
-          src="/static/images/imgfinish.jpg"
-          mode='aspectFill'
-        />
-        <image
-          :class="!imgfinish?'no_image':'image'"
+          :class="image"
           :src="host_img+item.headlines"
-          @load="imgFinish"
           mode='aspectFill'
         />
         <div
@@ -213,6 +171,7 @@
       <div
         class="content"
         v-if="item.type==21"
+        @click="godetail(item.type,item.id)"
       >
         <div class="title">{{item.title}}</div>
         <div
@@ -229,14 +188,7 @@
         >结束时间：{{item.end_time}}</div>
         <image
           class="image"
-          v-if="!imgfinish"
-          src="/static/images/imgfinish.jpg"
-          mode='aspectFill'
-        />
-        <image
-          :class="!imgfinish?'no_image':'image'"
           :src="host_img+item.headlines"
-          @load="imgFinish"
           mode='aspectFill'
         />
         <div
@@ -257,18 +209,12 @@
     <div
       class="content"
       v-if="prepare"
+      @click="godetail(prepare.type,prepare.id)"
     >
       <div class="title">本期团购</div>
       <image
         class="image"
-        v-if="!imgfinish"
-        src="/static/images/imgfinish.jpg"
-        mode='aspectFill'
-      />
-      <image
-        :class="!imgfinish?'no_image':'image'"
         :src="host_img+prepare.pic_url"
-        @load="imgFinish"
         mode='aspectFill'
       />
       <div class="content_title">{{prepare.title}}</div>
@@ -297,13 +243,33 @@ export default {
   props: ["recommend_list", "prepare"],
   data() {
     return {
-      host_img: config.host_img,
-      imgfinish: false
+      host_img: config.host_img
     };
   },
+  onLoad() {
+    console.log(this);
+  },
   methods: {
-    imgFinish() {
-      this.imgfinish = true;
+    godetail(type, id) {
+      if (type == 4) {
+        this.$router.push({ path: "article/articleDetail?id=" + id });
+      } else if (type == 8) {
+        this.$router.push({ path: "auction/detail?id=" + id });
+      } else if (type == 13) {
+        this.$router.push({ path: "prepare/detail?id=" + id });
+      } else if (type == 14) {
+        this.$router.push({ path: "pickup/detail?id=" + id });
+      } else if (type == 15) {
+        this.$router.push({ path: "article/seminar?id=" + id });
+      } else if (type == 18) {
+        this.$router.push({ path: "guess/detail?id=" + id });
+      } else if (type == 20) {
+        this.$router.push({ path: "fakegoods/detail?id=" + id });
+      } else if (type == 22) {
+        this.$router.push({ path: "spike/detail?id=" + id });
+      } else if (type == 32) {
+        this.$router.push({ path: "pinshouqi/detail?id=" + id });
+      }
     }
   }
 };
@@ -325,15 +291,12 @@ export default {
     font-size: 24rpx;
     color: #bc2e2e;
   }
-  .no_image {
-    width: 0px;
-    height: 0px;
-  }
   .image {
     width: 690rpx;
     height: 376rpx;
     margin: 30rpx 0;
     border-radius: 8rpx;
+    background: #f4f4f4;
   }
   .status {
     display: inline-block;

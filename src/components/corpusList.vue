@@ -39,7 +39,6 @@ export default {
       host_img: config.host_img,
       imgfinish: false,
       corpus_list: []
-
     };
   },
   onLoad() {
@@ -113,6 +112,7 @@ export default {
     width: 270rpx;
     height: 270rpx;
     border-radius: 0 8rpx 8rpx 0;
+    background: #f4f4f4;
   }
 }
 .container:last-child {

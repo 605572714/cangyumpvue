@@ -15,14 +15,7 @@
         <swiper-item>
           <img
             class="swiper_img"
-            v-if="!imgfinish"
-            src="/static/images/imgfinish.jpg"
-            mode='aspectFill'
-          >
-          <img
-            :class="!imgfinish?'no_image':'swiper_img'"
             :src="host_img+imgUrl.pic_url"
-            @load="imgFinish"
             mode='aspectFill'
           >
         </swiper-item>
@@ -42,11 +35,6 @@ export default {
       imgfinish: false,
       host_img: config.host_img
     };
-  },
-  methods: {
-    imgFinish() {
-      this.imgfinish = true;
-    }
   }
 };
 </script>
@@ -55,13 +43,10 @@ export default {
 .swiper_list {
   width: 750rpx;
   height: 280rpx;
-  .no_image {
-    width: 0px;
-    height: 0px;
-  }
   .swiper_img {
     width: 750rpx;
     height: 280rpx;
+    background: #f4f4f4;
   }
 }
 </style>

@@ -14,13 +14,6 @@
         v-if="item.palm.length>0&&item.comment_list.length>0"
       />
       <discussList :discuss_list="identify_list[index].comment_list" />
-      <!-- <div
-      class="discuss"
-      v-for="item in item.comment_list"
-      :key="item"
-    >
-      <p><span :style="item.user_type==1?'color:#bc2e2e':''">{{item.nickname_comment}}</span><span v-if="item.reply_type==1"> 回复 <span :style="item.user_type==1?'color:#bc2e2e':''">{{item.tonickname}}</span></span>：{{item.comment}}</p><br />
-    </div> -->
       <p
         class="more"
         v-if="item.comment_all>3"

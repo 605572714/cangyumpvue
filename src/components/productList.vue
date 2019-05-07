@@ -4,12 +4,6 @@
       v-for="item in product_list"
       :key="item.index"
     >
-      <img
-        class="container_img"
-        v-if="!imgfinish"
-        mode="aspectFill"
-        src="/static/images/imgfinish.jpg"
-      >
       <p
         class="price_icon"
         v-if="imgfinish&&item.status==1"
@@ -19,10 +13,9 @@
         v-else-if="imgfinish"
       >出价{{item.bid_number}}次</p>
       <img
-        :class="!imgfinish?'no_image':'container_img'"
+        class="container_img"
         mode="aspectFill"
         :src="host_img+item.pic_url"
-        @load="imgFinish"
       >
       <div class="container">
         <div class="container_left">
@@ -68,16 +61,13 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-.no_image {
-  width: 0px;
-  height: 0px;
-}
 .container_img {
   width: 690rpx;
   height: 380rpx;
   margin: 0 30rpx;
   vertical-align: middle;
   border-radius: 8rpx 8rpx 0 0;
+  background: #f4f4f4;
 }
 .price_icon {
   font-size: 24rpx;

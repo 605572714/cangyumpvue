@@ -9,14 +9,7 @@
     >
       <img
         class="image"
-        v-if="!imgfinish"
-        src="/static/images/imgfinish.jpg"
-        mode="aspectFill"
-      >
-      <img
-        :class="!imgfinish?'no_image':'image'"
         :src="host_img+item.pic_article"
-        @load="imgFinish"
         mode="aspectFill"
       >
       <li class="title">{{item.title}}</li>
@@ -36,12 +29,8 @@ export default {
     };
   },
   methods: {
-    imgFinish() {
-      this.imgfinish = true;
-    },
     godetail(e) {
       var id = e.currentTarget.id;
-      console.log(id);
       this.$router.push({ path: "article/seminar?id=" + id });
     }
   }
@@ -55,14 +44,10 @@ export default {
   height: 480rpx;
   border-radius: 8rpx;
   border: 1px solid #ccc;
-  .no_iamge {
-    width: 0px;
-    height: 0px;
-  }
   .image {
     width: 100%;
     height: 380rpx;
-    background: #d9d9d9;
+    background: #f4f4f4;
     border-radius: 8rpx 8rpx 0 0;
   }
   .title {

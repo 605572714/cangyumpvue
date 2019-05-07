@@ -6,11 +6,7 @@
     >
       <li class="detail">
         <div>
-          <img
-            :src="imgfinish&&!imgerror?host_img+item.headlines:'/static/images/imgfinish.jpg'"
-            @load="imgFinish"
-            @error="imgError"
-          >
+          <img :src="host_img+item.headlines">
           <p>{{item.content}}</p>
         </div>
         <div class="bottom">
@@ -54,16 +50,7 @@ export default {
 
       console.log(this.list);
     }
-  },
-  methods: {
-    imgFinish() {
-      this.imgfinish = true;
-    },
-    imgError() {
-      this.imgerror = true;
-    }
-  },
-  conputed: {}
+  }
 };
 </script>
 
@@ -83,6 +70,7 @@ export default {
         width: 690rpx;
         height: 380rpx;
         vertical-align: middle;
+        background: #f4f4f4;
       }
       p {
         position: absolute;

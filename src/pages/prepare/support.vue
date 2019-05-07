@@ -11,13 +11,8 @@
       :key="item.index"
     >
       <img
-        v-if="!imgfinish"
         class="img"
-        src="/static/images/imgfinish.jpg"
-      > <img
-        :class="imgfinish?'img':'no_img'"
         :src="host_img+item.pic_url"
-        @load="imgFinish"
       >
       <div class="content">
         <span class="title">{{item.title}}</span>
@@ -58,9 +53,6 @@ export default {
       });
       this.list = list.list;
       console.log(this.list);
-    },
-    imgFinish() {
-      this.imgfinish = true;
     }
   }
 };
@@ -70,20 +62,18 @@ export default {
 .top_img {
   width: 100%;
   height: 420rpx;
+  background: #f4f4f4;
 }
 .contianer {
   width: 710rpx;
   padding: 20rpx;
   display: flex;
   border-bottom: 0.5px solid #d9d9d9;
-  .no_img {
-    width: 0px;
-    height: 0px;
-  }
   .img {
     width: 200rpx;
     height: 200rpx;
     border-radius: 8rpx;
+    background: #f4f4f4;
   }
   .content {
     width: 490rpx;

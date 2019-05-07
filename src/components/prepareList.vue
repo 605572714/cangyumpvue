@@ -30,8 +30,7 @@
         >已结束</p>
         <image
           class="image"
-          :src="imgfinish?host_img+item.pic_url:'/static/images/imgfinish.jpg'"
-          @load="imgFinish"
+          :src="host_img+item.pic_url"
           mode='aspectFill'
         />
         <div class="content">
@@ -68,9 +67,6 @@ export default {
   },
 
   methods: {
-    imgFinish() {
-      this.imgfinish = true;
-    },
     goto(e) {
       var id = e.currentTarget.id;
       this.$router.push({ path: "detail?id=" + id });
@@ -124,6 +120,7 @@ export default {
       width: 345rpx;
       height: 345rpx;
       border-radius: 8rpx;
+      background: #f4f4f4;
     }
     .content {
       padding: 20rpx 5rpx;

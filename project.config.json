@@ -11,6 +11,8 @@
 	"compileType": "miniprogram",
 	"appid": "wx8f46b59fc07d588c",
 	"projectname": "cangyumpvue",
+	"simulatorType": "wechat",
+	"simulatorPluginLibVersion": {},
 	"condition": {
 		"search": {
 			"current": -1,

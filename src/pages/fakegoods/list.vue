@@ -13,15 +13,9 @@
       :key="item.index"
       @click="godetail"
       :id="item.id"
-    >
-      <img
-        v-if="!imgfinish"
+    > <img
         class="image"
-        src="/static/images/imgfinish.jpg"
-      > <img
-        :class="imgfinish?'image':'no_img'"
         :src="host_img+item.pic_url"
-        @load="imgFinish"
       >
       <h1 class="title">{{item.title}}</h1>
       <p class="content">{{item.content}}</p>
@@ -70,10 +64,6 @@ export default {
       var id = e.currentTarget.id;
       this.$router.push({ path: "detail?id=" + id });
     },
-    // 图片加载完成
-    imgFinish() {
-      this.imgfinish = true;
-    }
   },
   // 下拉刷新方法，与methods方法同级
   onPullDownRefresh() {
@@ -103,10 +93,7 @@ export default {
     width: 710rpx;
     height: 364rpx;
     border-radius: 8rpx;
-  }
-  .no_img {
-    width: 0px;
-    height: 0px;
+    background: #f4f4f4;
   }
   .title {
     padding-top: 20rpx;

@@ -36,13 +36,8 @@
         class="imgs"
       >
         <img
-          class="img"
-          src="/static/images/imgfinish.jpg"
-          v-if="!imgfinish"
-        >
-        <img
           :src="host_img+item.file_path"
-          :class="!imgfinish?'no_img':'img'"
+          class="img"
           @load="imgFinish"
         >
       </div>
@@ -58,7 +53,6 @@
         <img
           class="bottom_img"
           src="/static/images/kefu.png"
-          alt=""
         >
         <p class="bottom_text">客服</p>
       </button>
@@ -116,9 +110,6 @@ export default {
         this.currentColor = "background:#F89649;";
       }
       console.log(this.list);
-    },
-    imgFinish() {
-      this.imgfinish = true;
     }
   }
 };
@@ -128,6 +119,7 @@ export default {
 .video {
   width: 750rpx;
   vertical-align: middle;
+  background: #f4f4f4;
 }
 .status {
   display: flex;
@@ -188,13 +180,10 @@ export default {
     width: 690rpx;
     height: 418rpx;
     margin-bottom: 20rpx;
-    .no_img {
-      width: 0px;
-      height: 0px;
-    }
     .img {
       width: 100%;
       height: 100%;
+      background: #f4f4f4;
     }
   }
 }

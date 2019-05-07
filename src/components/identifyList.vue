@@ -2,9 +2,7 @@
   <div>
     <img
       class="avatar"
-      :src="imgfinish?host_img+identify_list.avatar:'/static/images/avatar.png'"
-      @load="imgFinish"
-      @error="imgError"
+      :src="host_img+identify_list.avatar"
     >
     <div class="nick">{{identify_list.nickname}}
       <p :class="identify_list.rating>7?'heightlevel':'lowlevel'">LV.{{identify_list.rating}}</p>
@@ -27,7 +25,6 @@
           :style="identify_list.album.length==1?'width:460rpx;height:460rpx;':''"
           :src="identify_list.haveHead==1?img.file_path:host_img+img.file_path"
           mode="aspectFill"
-          @load="imgFinish"
         >
       </div>
     </div>
@@ -141,6 +138,7 @@ export default {
     margin-right: 6rpx;
     margin-bottom: 6rpx;
     vertical-align: middle;
+    background: #f4f4f4;
   }
 }
 .palm {

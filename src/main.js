@@ -9,4 +9,7 @@ const app = new Vue({
   mpType: 'app',
   ...App
 })
+
 app.$mount()
+Vue.prototype.globalData = getApp().globalData
+

@@ -87,6 +87,7 @@ export default {
     this.swiperList();
     this.recommendList();
     this.corpusList();
+    this.globalData.a = 222;
   }
 };
 </script>

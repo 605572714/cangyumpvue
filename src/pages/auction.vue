@@ -108,6 +108,10 @@ export default {
   onLoad() {
     this.productList();
   },
+  mounted() {
+    console.log("查看缓存");
+    console.log(this.globalData);
+  },
   methods: {
     async productList() {
       //   拍卖

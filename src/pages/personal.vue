@@ -60,7 +60,7 @@ export default {
       name: config.name,
       avatar: config.avatar,
       token: config.token,
-      user_id: config.user_id,
+      user_id: config.user_id
     };
   },
   onLoad() {
@@ -102,10 +102,12 @@ export default {
       if (this.token) {
         wx.hideLoading();
       }
+      wx.setStorageSync("userInfo", res.userInfo);
       wx.setStorageSync("name", res.userInfo.nickName);
       wx.setStorageSync("avatar", res.userInfo.avatarUrl);
       wx.setStorageSync("token", login.token);
       wx.setStorageSync("user_id", login.user_id);
+      this.globalData.userInfo = res.userInfo;
     }
   }
 };

@@ -64,8 +64,6 @@ export default {
     };
   },
   onLoad() {
-    if (!config.token) {
-    }
   },
   methods: {
     login() {
@@ -96,18 +94,19 @@ export default {
         encryptedData: res.encryptedData,
         iv: res.iv
       });
+      console.log(login)
       this.name = res.userInfo.nickName;
       this.avatar = res.userInfo.avatarUrl;
       this.token = login.token;
       if (this.token) {
         wx.hideLoading();
       }
-      wx.setStorageSync("userInfo", res.userInfo);
-      wx.setStorageSync("name", res.userInfo.nickName);
-      wx.setStorageSync("avatar", res.userInfo.avatarUrl);
-      wx.setStorageSync("token", login.token);
-      wx.setStorageSync("user_id", login.user_id);
-      this.globalData.userInfo = res.userInfo;
+      wx.setStorageSync("USERINFO", res.userInfo);
+      wx.setStorageSync("MANE", login.nickname);
+      wx.setStorageSync("AVATAR", config.host_img+login.avatar);
+      wx.setStorageSync("TOKEN", login.token);
+      wx.setStorageSync("MOBILE_BIND", login.mobile_bind);
+      wx.setStorageSync("USER_ID", login.user_id);
     }
   }
 };

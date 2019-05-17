@@ -2,16 +2,10 @@
   <div>
     <!-- 加载状态 -->
     <div v-if="loading">
-      <i-spin
-        fix
-        size="large"
-      ></i-spin>
+      <i-spin fix size="large"></i-spin>
     </div>
     <div v-if="list">
-      <img
-        class="top_img"
-        :src="host_img+list.pic_url"
-      >
+      <img class="top_img" :src="host_img+list.pic_url">
       <div class="top">
         <p class="status">已结束</p>
         <h1 class="title">{{list.title}}</h1>
@@ -35,13 +29,10 @@
           <p class="support_bottom">{{time}}</p>
         </div>
       </div>
-      <van-tabs
-        active="active"
-        sticky
-      >
+      <van-tabs active="active" sticky>
         <van-tab title="项目详情">
           <div class="wxparse">
-            <wxParse :content="article" />
+            <wxParse :content="article"/>
           </div>
         </van-tab>
         <van-tab title="项目进展">{{item}}</van-tab>
@@ -51,30 +42,22 @@
       <button
         class="bottom_left"
         open-type="contact"
-        bindtap='supportAction'
+        bindtap="supportAction"
         :send-message-title="list.title"
         show-message-card="true"
-        hover-class='none'
+        hover-class="none"
       >
-        <img
-          class="bottom_img"
-          src="/static/images/kefu.png"
-          alt=""
-        >
+        <img class="bottom_img" src="/static/images/kefu.png" alt>
         <p class="bottom_text">客服</p>
       </button>
       <div class="bottom_right">
-        <p
-          v-if="list.type==1"
-          @click="godetail"
-        >去支持￥{{list.price_least}}起</p>
+        <p v-if="list.type==1" @click="godetail">去支持￥{{list.price_least}}起</p>
         <p v-else-if="list.type==2">制作中</p>
         <p v-else-if="list.type==3">发货中</p>
         <p v-else>查看支持项</p>
       </div>
     </div>
   </div>
-
 </template>
 
 <script>
@@ -93,6 +76,11 @@ export default {
       time: "",
       list: ""
     };
+  },
+  onLoad(options) {
+    console.log(options);
+    this.id = options.id;
+    this.requestList();
   },
   methods: {
     async requestList() {
@@ -131,10 +119,6 @@ export default {
           this.list.type
       });
     }
-  },
-  onLoad(options) {
-    this.id = options.id;
-    this.requestList();
   }
 };
 </script>

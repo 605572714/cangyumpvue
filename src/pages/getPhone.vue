@@ -1,5 +1,5 @@
 <template>
-    <div>1234</div>
+    <div>getphone</div>
 </template>
 
 <script>
@@ -8,6 +8,6 @@ export default {
 }
 </script>
 
-<style lang="scss">
+<style lang="scss" scoped>
 
 </style>

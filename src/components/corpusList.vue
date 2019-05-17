@@ -1,8 +1,5 @@
 <template>
-  <div
-    style="background:#fff"
-    v-if="corpus_list"
-  >
+  <div style="background:#fff" v-if="corpus_list">
     <div
       class="container"
       v-for="item in corpus_list"
@@ -14,18 +11,13 @@
         <p class="title">{{item.title}}</p>
         <p class="content">{{item.content}}</p>
       </div>
-      <img
-        class="right"
-        v-if="!imgfinish"
-        mode='aspectFill'
-        src="/static/images/imgfinish.jpg"
-      />
+      <img class="right" v-if="!imgfinish" mode="aspectFill" src="/static/images/imgfinish.jpg">
       <img
         :class="!imgfinish?'no_image':'right'"
-        mode='aspectFill'
+        mode="aspectFill"
         @load="imgFinish"
         :src="host_img+item.pic_header"
-      />
+      >
     </div>
   </div>
 </template>
@@ -42,24 +34,22 @@ export default {
     };
   },
   onLoad() {
-    console.log(this.corpus_list);
     this.corpus_list;
   },
   watch: {
     corpus_list(list) {
       this.list = list;
-      console.log("这是列表");
-      console.log(list);
-      console.log("这是列表");
     }
   },
   methods: {
     imgFinish() {
       this.imgfinish = true;
     },
-    godetail(e) {
+    godetail:(e)=> {
       var id = e.currentTarget.id;
-      this.$router.push({ path: "/pages/article/articleDetail?id=" + id });
+      wx.navigateTo({
+        url: "/pages/article/articleDetail?id=" + id ,
+      });
     }
   }
 };

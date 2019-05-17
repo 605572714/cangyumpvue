@@ -119,6 +119,35 @@ export function previewImage(imgs, head, index) {
     });
 }
 
+/**
+ * 验证token是否失效
+ */
+export function getCheckToken() {
+    const that = this
+    wx.request({
+        url: config.host_url + "check_token",
+        data: {
+            token: config.token
+        },
+        success: (res) => {
+            console.log("进入验证token");
+            console.log(res);
+            if (res.data.result != 100) {
+                wx.navigateTo({
+                    url: '/pages/login',
+                })
+                console.log("用户未登录");
+            } else {
+                if (config.mobile_bind != "y") {
+                    wx.navigateTo({
+                        url: '/pages/getPhone',
+                    })
+                }
+            }
+        }
+    });
+}
+
 function addEge(a) {
     return a < 10 ? a = "0" + a : a = a
 }

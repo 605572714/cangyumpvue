@@ -66,6 +66,7 @@ export default {
     width: 710rpx;
     height: 364rpx;
     border-radius: 8rpx;
+    background: #d7d7d7;
   }
   .title {
     padding-top: 20rpx;

@@ -3,6 +3,8 @@
     "pages/index",
     "pages/auction",
     "pages/find",
+    "pages/login",
+    "pages/getPhone",
     "pages/personal",
     {
       "path": "pages/prepare/list"

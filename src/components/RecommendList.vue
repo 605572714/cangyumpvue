@@ -1,239 +1,88 @@
 <template>
   <div>
-    <div
-      v-for="item in recommend_list"
-      :key="item.index"
-    >
+    <div v-for="item in recommend_list" :key="item.index">
       <!-- 专题推荐 -->
-      <div
-        class="content"
-        v-if="item.type==4"
-        @click="godetail(item.type,item.id)"
-      >
+      <a class="content" v-if="item.type==4" href="article/seminar?id=item.id">
         <div class="title">本期专题</div>
-        <image
-          class="image"
-          :src="host_img+item.headlines"
-          mode='aspectFill'
-        />
-      </div>
+        <img class="image" :src="host_img+item.headlines" mode="aspectFill">
+      </a>
       <!-- 臻品推荐 -->
-      <div
-        class="content"
-        v-if="item.type==23"
-        @click="godetail(item.type,item.id)"
-      >
+      <a class="content" v-if="item.type==23" href="fakegoods/detail?id=item.id">
         <div class="title">臻品推荐</div>
-        <image
-          class="image"
-          :src="host_img+item.headlines"
-          mode='aspectFill'
-        />
-      </div>
+        <img class="image" :src="host_img+item.headlines" mode="aspectFill">
+      </a>
       <!-- 众团推荐 -->
-      <div
-        class="content"
-        v-if="item.type==31"
-        @click="godetail(item.type,item.id)"
-      >
+      <a class="content" v-if="item.type==31" href>
         <div class="title">{{item.title}}</div>
-        <image
-          class="image"
-          :src="host_img+item.headlines"
-          mode='aspectFill'
-        />
-      </div>
+        <img class="image" :src="host_img+item.headlines" mode="aspectFill">
+      </a>
       <!-- 拼手气推荐 -->
-      <div
-        class="content"
-        v-if="item.type==32"
-        @click="godetail(item.type,item.id)"
-      >
+      <div class="content" v-if="item.type==32">
         <div class="title">{{item.title}}</div>
-        <image
-          class="image"
-          :src="host_img+item.headlines"
-          mode='aspectFill'
-        />
+        <img class="image" :src="host_img+item.headlines" mode="aspectFill">
       </div>
       <!-- 拍卖推荐 -->
-      <div
-        class="content"
-        v-if="item.type==11"
-        @click="godetail(item.type,item.id)"
-      >
+      <a class="content" v-if="item.type==11" href="auction/detail?id=item.id">
         <div class="title">{{item.title}}·{{item.amount}}件商品</div>
-        <div
-          class="time"
-          v-if="item.status==1"
-        >开始时间：{{item.end_time}}</div>
-        <div
-          class="time"
-          v-else-if="item.status==2"
-        >结束时间：{{item.end_time}}</div>
-        <div
-          class="time"
-          v-else
-        >结束时间：{{item.end_time}}</div>
-        <image
-          class="image"
-          :src="host_img+item.headlines"
-          mode='aspectFill'
-        />
-        <div
-          class="status"
-          v-if="item.status==1"
-        >即将开始</div>
-        <div
-          class="status"
-          v-else-if="item.status==2"
-        >进行中</div>
-        <div
-          class="status gray"
-          v-else
-        >已结束</div>
-      </div>
+        <div class="time" v-if="item.status==1">开始时间：{{item.end_time}}</div>
+        <div class="time" v-else-if="item.status==2">结束时间：{{item.end_time}}</div>
+        <div class="time" v-else>结束时间：{{item.end_time}}</div>
+        <img class="image" :src="host_img+item.headlines" mode="aspectFill">
+        <div class="status" v-if="item.status==1">即将开始</div>
+        <div class="status" v-else-if="item.status==2">进行中</div>
+        <div class="status gray" v-else>已结束</div>
+      </a>
       <!-- 捡漏推荐 -->
-      <div
-        class="content"
-        v-if="item.type==14"
-        @click="godetail(item.type,item.id)"
-      >
+      <a class="content" v-if="item.type==14" href="pickup/detail?id=item.id">
         <div class="title">{{item.title}}</div>
-        <div
-          class="time"
-          v-if="item.status==1"
-        >开始时间：{{item.end_time}}</div>
-        <div
-          class="time"
-          v-else-if="item.status==2"
-        >结束时间：{{item.end_time}}</div>
-        <div
-          class="time"
-          v-else
-        >结束时间：{{item.end_time}}</div>
-        <image
-          class="image"
-          :src="host_img+item.headlines"
-          mode='aspectFill'
-        />
-        <div
-          class="status"
-          v-if="item.status==1"
-        >即将开始</div>
-        <div
-          class="status"
-          v-else-if="item.status==2"
-        >进行中</div>
-        <div
-          class="status gray"
-          v-else
-        >已结束</div>
-      </div>
+        <div class="time" v-if="item.status==1">开始时间：{{item.end_time}}</div>
+        <div class="time" v-else-if="item.status==2">结束时间：{{item.end_time}}</div>
+        <div class="time" v-else>结束时间：{{item.end_time}}</div>
+        <img class="image" :src="host_img+item.headlines" mode="aspectFill">
+        <div class="status" v-if="item.status==1">即将开始</div>
+        <div class="status" v-else-if="item.status==2">进行中</div>
+        <div class="status gray" v-else>已结束</div>
+      </a>
       <!-- 猜价格推荐 -->
-      <div
-        class="content"
-        v-if="item.type==17"
-        @click="godetail(item.type,item.id)"
-      >
+      <a class="content" v-if="item.type==17" href="guess/detail">
         <div class="title">{{item.title}}</div>
-        <div
-          class="time"
-          v-if="item.status==1"
-        >开始时间：{{item.end_time}}</div>
-        <div
-          class="time"
-          v-else-if="item.status==2"
-        >结束时间：{{item.end_time}}</div>
-        <div
-          class="time"
-          v-else
-        >结束时间：{{item.end_time}}</div>
-        <image
-          :class="image"
-          :src="host_img+item.headlines"
-          mode='aspectFill'
-        />
-        <div
-          class="status"
-          v-if="item.status==1"
-        >即将开始</div>
-        <div
-          class="status"
-          v-else-if="item.status==2"
-        >进行中</div>
-        <div
-          class="status gray"
-          v-else
-        >已结束</div>
-      </div>
+        <div class="time" v-if="item.status==1">开始时间：{{item.end_time}}</div>
+        <div class="time" v-else-if="item.status==2">结束时间：{{item.end_time}}</div>
+        <div class="time" v-else>结束时间：{{item.end_time}}</div>
+        <img class="image" :src="host_img+item.headlines" mode="aspectFill">
+        <div class="status" v-if="item.status==1">即将开始</div>
+        <div class="status" v-else-if="item.status==2">进行中</div>
+        <div class="status gray" v-else>已结束</div>
+      </a>
       <!-- 秒杀推荐 -->
-      <div
-        class="content"
-        v-if="item.type==21"
-        @click="godetail(item.type,item.id)"
-      >
+      <a class="content" v-if="item.type==21" href="spike/detail">
         <div class="title">{{item.title}}</div>
-        <div
-          class="time"
-          v-if="item.status==1"
-        >开始时间：{{item.end_time}}</div>
-        <div
-          class="time"
-          v-else-if="item.status==2"
-        >结束时间：{{item.end_time}}</div>
-        <div
-          class="time"
-          v-else
-        >结束时间：{{item.end_time}}</div>
-        <image
-          class="image"
-          :src="host_img+item.headlines"
-          mode='aspectFill'
-        />
-        <div
-          class="status"
-          v-if="item.status==1"
-        >即将开始</div>
-        <div
-          class="status"
-          v-else-if="item.status==2"
-        >进行中</div>
-        <div
-          class="status gray"
-          v-else
-        >已结束</div>
-      </div>
+        <div class="time" v-if="item.status==1">开始时间：{{item.end_time}}</div>
+        <div class="time" v-else-if="item.status==2">结束时间：{{item.end_time}}</div>
+        <div class="time" v-else>结束时间：{{item.end_time}}</div>
+        <img class="image" :src="host_img+item.headlines" mode="aspectFill">
+        <div class="status" v-if="item.status==1">即将开始</div>
+        <div class="status" v-else-if="item.status==2">进行中</div>
+        <div class="status gray" v-else>已结束</div>
+      </a>
     </div>
     <!-- 团购推荐 -->
-    <div
-      class="content"
-      v-if="prepare"
-      @click="godetail(prepare.type,prepare.id)"
-    >
-      <div class="title">本期团购</div>
-      <image
-        class="image"
-        :src="host_img+prepare.pic_url"
-        mode='aspectFill'
-      />
-      <div class="content_title">{{prepare.title}}</div>
+    <a class="content" v-for="item in prepare" :key="item" href="prepare/detail" >
+      <img class="image" :src="host_img+item.pic_url" mode="aspectFill">
+      <div class="content_title">{{item.title}}</div>
       <div class="progress">
-        <div v-if="prepare.schedule<100">
-          <van-progress
-            :percentage="prepare.schedule"
-            color=#bc2e2e
-          />
+        <div v-if="item.schedule<100">
+          <van-progress :percentage="item.schedule" color="#bc2e2e"/>
         </div>
         <div v-else>
           <van-progress
-            :percentage="prepare.schedule"
+            :percentage="item.schedule"
             color="linear-gradient(90deg, #d43131, #751c75)"
           />
         </div>
-        <div class="price">￥{{prepare.price_least}}起</div>
+        <div class="price">￥{{item.price_least}}起</div>
       </div>
-    </div>
+    </a>
   </div>
 </template>
 
@@ -246,32 +95,7 @@ export default {
       host_img: config.host_img
     };
   },
-  onLoad() {
-    console.log(this);
-  },
-  methods: {
-    godetail(type, id) {
-      if (type == 4) {
-        this.$router.push({ path: "article/articleDetail?id=" + id });
-      } else if (type == 8) {
-        this.$router.push({ path: "auction/detail?id=" + id });
-      } else if (type == 13) {
-        this.$router.push({ path: "prepare/detail?id=" + id });
-      } else if (type == 14) {
-        this.$router.push({ path: "pickup/detail?id=" + id });
-      } else if (type == 15) {
-        this.$router.push({ path: "article/seminar?id=" + id });
-      } else if (type == 18) {
-        this.$router.push({ path: "guess/detail?id=" + id });
-      } else if (type == 20) {
-        this.$router.push({ path: "fakegoods/detail?id=" + id });
-      } else if (type == 22) {
-        this.$router.push({ path: "spike/detail?id=" + id });
-      } else if (type == 32) {
-        this.$router.push({ path: "pinshouqi/detail?id=" + id });
-      }
-    }
-  }
+  onLoad() {}
 };
 </script>
 

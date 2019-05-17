@@ -16,7 +16,6 @@ function request(url, method, data) {
             method,
             url: config.host_url + url,
             success: function (res) {
-                // success
                 if (res.data.result == 100) {
                     resolve(res.data.data)
                 } else {

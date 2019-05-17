@@ -2,27 +2,27 @@
   <div>
     <div v-for="item in recommend_list" :key="item.index">
       <!-- 专题推荐 -->
-      <a class="content" v-if="item.type==4" href="article/seminar?id=item.id">
+      <div class="content" v-if="item.type==4" @click="godetail(item.type,item.id)">
         <div class="title">本期专题</div>
         <img class="image" :src="host_img+item.headlines" mode="aspectFill">
-      </a>
+      </div>
       <!-- 臻品推荐 -->
-      <a class="content" v-if="item.type==23" href="fakegoods/detail?id=item.id">
+      <div class="content" v-if="item.type==23" @click="godetail(item.type,item.id)">
         <div class="title">臻品推荐</div>
         <img class="image" :src="host_img+item.headlines" mode="aspectFill">
-      </a>
+      </div>
       <!-- 众团推荐 -->
-      <a class="content" v-if="item.type==31" href>
+      <div class="content" v-if="item.type==31" @click="godetail(item.type,item.id)">
         <div class="title">{{item.title}}</div>
         <img class="image" :src="host_img+item.headlines" mode="aspectFill">
-      </a>
+      </div>
       <!-- 拼手气推荐 -->
-      <div class="content" v-if="item.type==32">
+      <div class="content" v-if="item.type==32" @click="godetail(item.type,item.id)">
         <div class="title">{{item.title}}</div>
         <img class="image" :src="host_img+item.headlines" mode="aspectFill">
       </div>
       <!-- 拍卖推荐 -->
-      <a class="content" v-if="item.type==11" href="auction/detail?id=item.id">
+      <div class="content" v-if="item.type==11" @click="godetail(item.type,item.id)">
         <div class="title">{{item.title}}·{{item.amount}}件商品</div>
         <div class="time" v-if="item.status==1">开始时间：{{item.end_time}}</div>
         <div class="time" v-else-if="item.status==2">结束时间：{{item.end_time}}</div>
@@ -31,10 +31,10 @@
         <div class="status" v-if="item.status==1">即将开始</div>
         <div class="status" v-else-if="item.status==2">进行中</div>
         <div class="status gray" v-else>已结束</div>
-      </a>
+      </div>
       <!-- 捡漏推荐 -->
-      <a class="content" v-if="item.type==14" href="pickup/detail?id=item.id">
-        <div class="title">{{item.title}}</div>
+      <div class="content" v-if="item.type==14" @click="godetail(item.type,item.id)">
+        <div class="title">{{item.title}}·{{item.amount}}件商品</div>
         <div class="time" v-if="item.status==1">开始时间：{{item.end_time}}</div>
         <div class="time" v-else-if="item.status==2">结束时间：{{item.end_time}}</div>
         <div class="time" v-else>结束时间：{{item.end_time}}</div>
@@ -42,10 +42,10 @@
         <div class="status" v-if="item.status==1">即将开始</div>
         <div class="status" v-else-if="item.status==2">进行中</div>
         <div class="status gray" v-else>已结束</div>
-      </a>
+      </div>
       <!-- 猜价格推荐 -->
-      <a class="content" v-if="item.type==17" href="guess/detail">
-        <div class="title">{{item.title}}</div>
+      <div class="content" v-if="item.type==17" @click="godetail(item.type,item.id)">
+        <div class="title">{{item.title}}·{{item.amount}}件商品</div>
         <div class="time" v-if="item.status==1">开始时间：{{item.end_time}}</div>
         <div class="time" v-else-if="item.status==2">结束时间：{{item.end_time}}</div>
         <div class="time" v-else>结束时间：{{item.end_time}}</div>
@@ -53,10 +53,10 @@
         <div class="status" v-if="item.status==1">即将开始</div>
         <div class="status" v-else-if="item.status==2">进行中</div>
         <div class="status gray" v-else>已结束</div>
-      </a>
+      </div>
       <!-- 秒杀推荐 -->
-      <a class="content" v-if="item.type==21" href="spike/detail">
-        <div class="title">{{item.title}}</div>
+      <div class="content" v-if="item.type==21" @click="godetail(item.type,item.c_id)">
+        <div class="title">{{item.title}}·{{item.amount}}件商品</div>
         <div class="time" v-if="item.status==1">开始时间：{{item.end_time}}</div>
         <div class="time" v-else-if="item.status==2">结束时间：{{item.end_time}}</div>
         <div class="time" v-else>结束时间：{{item.end_time}}</div>
@@ -64,10 +64,10 @@
         <div class="status" v-if="item.status==1">即将开始</div>
         <div class="status" v-else-if="item.status==2">进行中</div>
         <div class="status gray" v-else>已结束</div>
-      </a>
+      </div>
     </div>
     <!-- 团购推荐 -->
-    <a class="content" v-for="item in prepare" :key="item" href="prepare/detail" >
+    <div class="content" v-for="item in prepare" :key="item" @click="goprepare(item.id)">
       <img class="image" :src="host_img+item.pic_url" mode="aspectFill">
       <div class="content_title">{{item.title}}</div>
       <div class="progress">
@@ -82,7 +82,7 @@
         </div>
         <div class="price">￥{{item.price_least}}起</div>
       </div>
-    </a>
+    </div>
   </div>
 </template>
 
@@ -95,7 +95,59 @@ export default {
       host_img: config.host_img
     };
   },
-  onLoad() {}
+  onLoad() {},
+  methods: {
+    godetail(type, id) {
+      switch (Number(type)) {
+        case 4: //专题
+          wx.navigateTo({
+            url: "article/seminar?id=" + id
+          });
+          break;
+        case 11: //拍卖
+          wx.navigateTo({
+            url: "auction/detail?id=" + id
+          });
+          break;
+        case 14: //捡漏
+          wx.navigateTo({
+            url: "pickup/detail?id=" + id
+          });
+          break;
+        case 17: //猜价格
+          wx.navigateTo({
+            url: "guess/list?id=" + id
+          });
+          break;
+        case 21: //秒杀
+          wx.navigateTo({
+            url: "spike/product?id=" + id
+          });
+          break;
+        case 23: //臻品
+          wx.navigateTo({
+            url: "fakegoods/detail?id=" + id
+          });
+          break;
+        case 31: //众团
+          // wx.navigateTo({
+          //   url: "fakegoods/detail?id=" + id
+          // });
+          break;
+        case 32: //拼手气
+          // wx.navigateTo({
+          //   url: "fakegoods/detail?id=" + id
+          // });
+          break;
+      }
+    },
+    //跳转团购
+    goprepare(id) {
+      wx.navigateTo({
+        url: "prepare/detail?id=" + id
+      });
+    }
+  }
 };
 </script>
 
@@ -120,7 +172,6 @@ export default {
     height: 376rpx;
     margin: 30rpx 0;
     border-radius: 8rpx;
-    background: #f4f4f4;
   }
   .status {
     display: inline-block;

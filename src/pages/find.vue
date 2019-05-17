@@ -1,13 +1,24 @@
 <template>
   <div class="page">
+    <!-- 顶部搜索 -->
+    <div class="search">
+      <div class="search_content" bindtap="searchAction">
+        <img class="search_icon" src="/static/images/search.png">
+        <span class="search_text">搜索文章内容</span>
+      </div>
+    </div>
+
     <van-tabs swipeable>
       <van-tab title="读点">
         <div class="corpus">
-          <corpusList :corpus_list="corpus_list" />
+          <corpusList :corpus_list="corpus_list"/>
         </div>
       </van-tab>
       <van-tab title="发现">
-        <specialList :special_list="special_list" />
+        <specialList :special_list="special_list"/>
+      </van-tab>
+      <van-tab title="课程">
+        <specialList :special_list="special_list"/>
       </van-tab>
     </van-tabs>
   </div>
@@ -51,6 +62,34 @@ export default {
 <style lang="scss" scoped>
 .page {
   background: #fff;
+  .search {
+    border-top: 1rpx solid#fff;
+    width: 750rpx;
+    height: 98rpx;
+    background: #fff;
+    .search_content {
+      width: 690rpx;
+      height: 60rpx;
+      margin-top: 20rpx;
+      margin-left: 30rpx;
+      border-radius: 40rpx;
+      border: 1rpx solid #d9d9d9;
+      display: flex;
+      flex-direction: row;
+      justify-content: center;
+      align-items: center;
+      .search_icon {
+        width: 32rpx;
+        height: 32rpx;
+        margin-right: 12rpx;
+      }
+
+      .search_text {
+        font-size: 28rpx;
+        color: #7f7f7f;
+      }
+    }
+  }
   .corpus {
     padding: 20rpx 0;
   }

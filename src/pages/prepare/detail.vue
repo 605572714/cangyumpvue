@@ -201,6 +201,7 @@ export default {
       width: 33rpx;
       height: 33rpx;
       margin-right: 10rpx;
+      background: #fff;
     }
   }
   .bottom_right {

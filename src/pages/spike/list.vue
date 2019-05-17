@@ -51,7 +51,7 @@ export default {
     godetail(e) {
       var id = e.currentTarget.id;
       wx.navigateTo({
-        url: "auction?id=" + id
+        url: "product?id=" + id
       });
     }
   }

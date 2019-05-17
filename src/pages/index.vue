@@ -5,7 +5,12 @@
       <i-spin fix size="large"></i-spin>
     </div>
     <!-- 顶部搜索框 -->
-    <van-search :value="value" placeholder="搜索文章内容"/>
+    <div class="search">
+      <div class="search_content" bindtap="searchAction">
+        <img class="search_icon" src="/static/images/search.png">
+        <span class="search_text">搜索文章内容</span>
+      </div>
+    </div>
     <!-- 首页轮播 -->
     <TopSwiper :imgUrls="imgUrls"/>
     <!-- 四个bunner -->
@@ -105,6 +110,36 @@ export default {
 </script>
 
 <style lang="scss" scoped>
+.search {
+  border-top: 1rpx solid#fff;
+  width: 750rpx;
+  height: 98rpx;
+  background: #fff;
+  .search_content {
+    width: 690rpx;
+    height: 60rpx;
+    margin-top: 20rpx;
+    margin-left: 30rpx;
+    border-radius: 40rpx;
+    border: 1rpx solid #d9d9d9;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    .search_icon {
+      width: 32rpx;
+      height: 32rpx;
+      margin-right: 12rpx;
+      background: #fff; 
+    }
+
+    .search_text {
+      font-size: 28rpx;
+      color: #7f7f7f;
+    }
+  }
+}
+
 h1 {
   font-size: 34rpx;
   text-align: center;

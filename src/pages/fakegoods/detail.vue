@@ -62,7 +62,7 @@ export default {
       id: ""
     };
   },
-  onLoad() {
+  onLoad(options) {
     Object.assign(this.$data, this.$options.data());
     //   获取传入id
     console.log(options);

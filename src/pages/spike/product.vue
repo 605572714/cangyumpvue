@@ -2,51 +2,28 @@
   <div id="page">
     <!-- 加载状态 -->
     <div v-if="loading">
-      <i-spin
-        fix
-        size="large"
-      ></i-spin>
+      <i-spin fix size="large"></i-spin>
     </div>
     <!-- 头部 -->
     <div class="top">
       <p class="time">{{header.endTime}}</p>
-      <img
-        src="/static/images/fen.png"
-        class="back"
-      >
+      <img src="/static/images/fen.png" class="back">
       <p class="title">{{header.screenings_des}}·{{header.total}}件商品</p>
-      <ruleList
-        :rule="header.rule"
-        :type='4'
-      />
+      <ruleList :rule="header.rule" :type="4"/>
     </div>
     <!-- 详情 -->
-    <div
-      class="content"
-      v-for="item in list"
-      :key="item"
-      @click="godetail"
-      :id="item.id"
-    >
-      <span
-        v-if="imgfinish"
-        class="status"
-      >进行中</span>
-      <img
-        v-if="!imgfinish"
-        src="/static/images/imgfinish.jpg"
-        class="img"
-        mode="aspectFill"
-      >
-      <img
-        :src="host_img+item.pic_url"
-        :class="!imgfinish?'no_img':'img'"
-        mode="aspectFill"
-        @load="imgFinish"
-      >
+    <div class="content" v-for="item in list" :key="item" @click="godetail" :id="item.id">
+      <span v-if="imgfinish" class="status">进行中</span>
+      <img :src="host_img+item.pic_url" class="img" mode="aspectFill">
       <p class="title">{{item.content}}</p>
-      <p class="old_price">原价<span>￥{{item.old_price}}</span></p>
-      <p class="price">秒杀价<span>￥{{item.price}}</span></p>
+      <p class="old_price">
+        原价
+        <span>￥{{item.old_price}}</span>
+      </p>
+      <p class="price">
+        秒杀价
+        <span>￥{{item.price}}</span>
+      </p>
     </div>
   </div>
 </template>
@@ -69,7 +46,8 @@ export default {
   },
   onLoad(options) {
     Object.assign(this.$data, this.$options.data());
-    this.id = options.id;
+    this.id = Number(options.id);
+    console.log(options);
     this.request();
   },
   methods: {
@@ -84,10 +62,6 @@ export default {
       this.header.rule = "秒杀";
       this.loading = false;
       console.log(this.list);
-    },
-    // 图片加载
-    imgFinish() {
-      this.imgfinish = true;
     },
     // 跳转详情
     godetail(e) {
@@ -114,6 +88,7 @@ export default {
     margin-top: 50rpx;
     width: 690rpx;
     height: 116rpx;
+    background: #fff;
   }
   .time {
     margin-top: 50rpx;
@@ -131,10 +106,6 @@ export default {
   margin-left: 20rpx;
   margin-top: 10rpx;
   width: 345rpx;
-  .no_img {
-    width: 0px;
-    height: 0px;
-  }
   .img {
     width: 345rpx;
     height: 350rpx;

@@ -2,44 +2,30 @@
   <div>
     <!-- 加载状态 -->
     <div v-if="loading">
-      <i-spin
-        fix
-        size="large"
-      ></i-spin>
+      <i-spin fix size="large"></i-spin>
     </div>
-    <video
-      v-if="list.video_url"
-      class="video"
-      :src="list.video_url"
-      autoplay
-    />
-    <img
-      v-else
-      :src="host_img+list.headlines"
-      class="video"
-    >
-    <p
-      class="status"
-      :style="currentColor"
-    >进行中<span>距离结束还剩 08:08:08</span></p>
+    <video v-if="list.video_url" class="video" :src="list.video_url" autoplay/>
+    <img v-else :src="host_img+list.headlines" class="video">
+    <p class="status" :style="currentColor">
+      进行中
+      <span>距离结束还剩 08:08:08</span>
+    </p>
     <div class="head">
       <h1 class="title">{{list.title}}</h1>
-      <p class="price">￥{{list.now_price}}<span>原价￥{{list.old_price}}</span></p>
+      <p class="price">
+        ￥{{list.now_price}}
+        <span>原价￥{{list.old_price}}</span>
+      </p>
     </div>
-    <Quality :quality_list="quality_list" />
+    <Quality :quality_list="quality_list"/>
     <div class="content">
-      <h1>详<span>细描</span>述</h1>
+      <h1>
+        详
+        <span>细描</span>述
+      </h1>
       <p>{{list.content}}</p>
-      <div
-        v-for="item in list.album"
-        :key="item"
-        class="imgs"
-      >
-        <img
-          :src="host_img+item.file_path"
-          class="img"
-          @load="imgFinish"
-        >
+      <div v-for="item in list.album" :key="item" class="imgs">
+        <img :src="host_img+item.file_path" class="img" @load="imgFinish">
       </div>
     </div>
     <div class="bottom">
@@ -48,23 +34,14 @@
         open-type="contact"
         :send-message-title="list.title"
         show-message-card="true"
-        hover-class='none'
+        hover-class="none"
       >
-        <img
-          class="bottom_img"
-          src="/static/images/kefu.png"
-        >
+        <img class="bottom_img" src="/static/images/kefu.png">
         <p class="bottom_text">客服</p>
       </button>
-      <div
-        class="bottom_right"
-        :style="backgroundColor"
-      >
+      <div class="bottom_right" :style="backgroundColor">
         <p v-if="list.status==1">未开始</p>
-        <p
-          v-else-if="list.status==2"
-          @click="godetail"
-        >立即购买</p>
+        <p v-else-if="list.status==2" @click="godetail">立即购买</p>
         <p v-else-if="list.status==3">已结束</p>
       </div>
     </div>
@@ -90,7 +67,8 @@ export default {
     };
   },
   onLoad(options) {
-    this.id = options.id;
+    console.log(options);
+    this.id = Number(options.id);
     this.request();
   },
   methods: {

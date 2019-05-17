@@ -1,19 +1,8 @@
 <template>
   <div v-if="img">
-    <img
-      class="top_img"
-      :src="host_img+img"
-      alt=""
-    >
-    <div
-      class="contianer"
-      v-for="item in list"
-      :key="item.index"
-    >
-      <img
-        class="img"
-        :src="host_img+item.pic_url"
-      >
+    <img class="top_img" :src="host_img+img" alt>
+    <div class="contianer" v-for="item in list" :key="item.index" @click="godetail(item.id)">
+      <img class="img" :src="host_img+item.pic_url">
       <div class="content">
         <span class="title">{{item.title}}</span>
         <span class="support">限额{{item.total}}份 剩余{{item.last_total}}份</span>
@@ -53,6 +42,11 @@ export default {
       });
       this.list = list.list;
       console.log(this.list);
+    },
+    godetail(id) {
+      wx.navigateTo({
+        url: "supportdetail?id=" + id
+      });
     }
   }
 };

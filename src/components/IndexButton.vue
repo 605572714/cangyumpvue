@@ -89,6 +89,7 @@ export default {};
     width: 54rpx;
     height: 54rpx;
     margin-bottom: 40rpx;
+    background: #fff;
   }
 }
 </style>

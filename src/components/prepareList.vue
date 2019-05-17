@@ -28,7 +28,7 @@
           class="end"
           v-else
         >已结束</p>
-        <image
+        <img
           class="image"
           :src="host_img+item.pic_url"
           mode='aspectFill'
@@ -120,7 +120,6 @@ export default {
       width: 345rpx;
       height: 345rpx;
       border-radius: 8rpx;
-      background: #f4f4f4;
     }
     .content {
       padding: 20rpx 5rpx;

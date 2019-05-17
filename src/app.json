@@ -16,6 +16,9 @@
       "path": "pages/prepare/support"
     },
     {
+      "path": "pages/prepare/supportdetail"
+    },
+    {
       "path": "pages/fakegoods/list"
     },
     {
@@ -44,6 +47,15 @@
     },
     {
       "path": "pages/auction/detail"
+    },
+    {
+      "path": "pages/guess/list"
+    },
+    {
+      "path": "pages/guess/product"
+    },
+    {
+      "path": "pages/guess/detail"
     },
     {
       "path": "pages/article/articleDetail"
